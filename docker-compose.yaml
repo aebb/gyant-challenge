@@ -8,6 +8,9 @@ services:
     command: npm run start:debug
     environment:
       - PORT=3000
+      - JWT_SECRET=foo
+      - JWT_TTL=3600s
+      - IGNORE_TTL=1
     ports:
       - "8080:3000"
       - "9229:9229"
@@ -30,5 +33,7 @@ services:
   cache-gyant:
     container_name: cache-gyant
     image: redis:alpine
+    ports:
+      - 6379:6379
 volumes:
   gyant_data: {}

@@ -1,10 +1,12 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { CasesModule } from './cases/cases.module';
 
 const ENV = process.env.NODE_ENV ?? 'dev';
+
+@Global()
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -23,7 +25,7 @@ const ENV = process.env.NODE_ENV ?? 'dev';
     }),
   ],
   controllers: [],
-  providers: [],
-
 })
-export class AppModule {}
+
+export class AppModule {
+}
