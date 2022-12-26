@@ -1,11 +1,9 @@
-#FROM node:lts
-#
-#WORKDIR /app
-#
-#COPY ./package*.json ./
-#
-#RUN npm install
-#
-#COPY . .
-#
-#CMD ["npm","run","start:debug"]
+FROM node:16.18.1
+
+RUN apt-get install libcurl4
+
+WORKDIR /app
+
+COPY --chown=node:node . /app
+
+RUN npm install --ci

@@ -2,10 +2,9 @@ version: '3'
 services:
   backend-gyant:
     container_name: backend-gyant
-    #    build: .
-    image: node:16.18.1
-    working_dir: /app
-    command: npm run start:debug
+    build: .
+    command: sh -c "npm install --ci && npm run start:debug"
+    user: node
     environment:
       - PORT=3000
       - JWT_SECRET=foo
@@ -18,7 +17,6 @@ services:
       - ".:/app"
     depends_on:
       - database-gyant
-      - cache-gyant
   database-gyant:
     container_name: database-gyant
     image: mongo:6.0.3
@@ -30,10 +28,5 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=root
       - MONGO_INITDB_DATABASE=gyant
-  cache-gyant:
-    container_name: cache-gyant
-    image: redis:alpine
-    ports:
-      - 6379:6379
 volumes:
   gyant_data: {}

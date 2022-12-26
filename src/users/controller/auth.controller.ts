@@ -3,7 +3,6 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from '../service/auth.service';
-import { JwtAuthGuard } from '../utils/jwt.guard';
 import { JWTAuthResponse } from '../dto/response/jwt.auth.response';
 
 @Controller()
@@ -22,7 +21,6 @@ export class AuthController {
 
   @Get('signout')
   @HttpCode(HttpStatus.OK)
-  @UseGuards(JwtAuthGuard)
   public async executeLogout(): Promise<void> {
     // todo: invalidate token
   }

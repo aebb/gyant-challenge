@@ -20,4 +20,9 @@ export class UserRepositoryMongo implements UserRepositoryInterface {
     }
     return new User(model.toObject());
   }
+
+  public async create(user: User): Promise<User> {
+    const entity = new this.model(user);
+    return entity.save();
+  }
 }
