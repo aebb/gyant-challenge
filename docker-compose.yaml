@@ -23,6 +23,7 @@ services:
     ports:
       - 27017:27017
     volumes:
+      - ./data/dump/gyant:/dump/
       - gyant_data:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root

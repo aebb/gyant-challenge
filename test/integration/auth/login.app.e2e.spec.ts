@@ -32,6 +32,22 @@ describe('AuthController (e2e) /signin', () => {
             .expect(401);
     });
 
+    it('/login wrong credentials', async function () {
+        const doctor = new User(
+            {
+                email: 'Dr.House',
+                password: '$2a$10$IU/lfvmRghFq6WqP1RPf7uFEObj7Zra7U3dH81Z.eNjeA7TYzYTOK',
+                roles: [Role.Doctor]
+            }
+        );
+        await moduleRef.get<UserRepositoryMongo>(UserRepositoryMongo).create(doctor);
+
+        await request(app.getHttpServer())
+            .post('/signin')
+            .send({email: 'Dr.House', password: 'Lupus'})
+            .expect(401);
+    });
+
     it('/login success', async function () {
         const doctor = new User(
             {

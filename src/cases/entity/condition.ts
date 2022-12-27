@@ -19,6 +19,10 @@ export class Condition {
     this.description = description;
   }
 
+  public getId(): string {
+    return this._id.toString();
+  }
+
   public getCode(): string {
     return this.code;
   }

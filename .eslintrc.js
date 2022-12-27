@@ -25,6 +25,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'max-len': ["error", {"code": 120}],
     'class-methods-use-this': 0,
-    'no-underscore-dangle': 0
+    'no-underscore-dangle': 0,
+    'new-cap': 0
   }
 }

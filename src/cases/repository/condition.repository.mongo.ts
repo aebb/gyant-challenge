@@ -23,6 +23,8 @@ export class ConditionRepositoryMongo implements ConditionRepositoryInterface {
 
   public async create(condition: Condition): Promise<Condition> {
     const entity = new this.model(condition);
-    return entity.save();
+    await entity.save();
+
+    return new Condition(entity.toObject());
   }
 }

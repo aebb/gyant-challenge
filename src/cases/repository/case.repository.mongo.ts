@@ -44,6 +44,8 @@ export class CaseRepositoryMongo implements CaseRepositoryInterface {
 
   public async create(medicalCase: Case): Promise<Case> {
     const entity = new this.model(medicalCase);
-    return entity.save();
+    await entity.save();
+
+    return new Case(entity.toObject());
   }
 }
